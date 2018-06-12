@@ -9,8 +9,12 @@ public class xorEncyption {
 
 	public static void main(String[] args) throws IOException {
 		Scanner scan = new Scanner(System.in);
+		System.out.println("Enter the file you want to encrypt: ");
+		String fName = scan.nextLine();
+		String[] tokens = fName.split(".")
+		String fNameOut = tokens[0] + "_encrypted." + tokens[tokens.length-1];
 		
-		FileInputStream inputStream = new FileInputStream("hello2.doc");
+		FileInputStream inputStream = new FileInputStream(fName);
 		//byte size = (byte) inputStream.getChannel().size();
 		byte[] bufferIn = new byte[1000000];
 		int total = 0;
@@ -26,7 +30,7 @@ public class xorEncyption {
 		String bytes = (encrpty(bufferIn, total, key));
 		byte[] buffer = bytes.getBytes();
 
-		FileOutputStream outputStream = new FileOutputStream("hello.doc");
+		FileOutputStream outputStream = new FileOutputStream(fNameOut);
 		outputStream.write(buffer);
 
 		outputStream.close();
